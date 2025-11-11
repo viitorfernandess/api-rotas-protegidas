@@ -47,4 +47,16 @@ module.exports = {
         return newUser
     },
 
+    deleteUser: (id) => {
+        const userIndex = users.findIndex(user => user.id === id)
+
+        if (userIndex === -1) {
+            return ({ message: 'User not found' })
+        }
+
+        const [deletedUser] = users.splice(userIndex, 1)
+
+        return deletedUser
+    }
+
 }
