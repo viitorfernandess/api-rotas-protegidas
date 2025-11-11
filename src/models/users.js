@@ -26,6 +26,25 @@ module.exports = {
 
         users.push(newUser)
         return newUser
-    }, 
+    },
+
+    createUser: (name, email, password, role) => {
+        const userAlreadyRegistered = users.find(user => user.email === email)
+
+        if (userAlreadyRegistered) {
+            return { error: 'User already exists' }
+        }
+
+        const newUser = {
+            id: Math.floor(Math.random() * 9999999).toString(),
+            name,
+            email,
+            password,
+            role
+        }
+
+        users.push(newUser)
+        return newUser
+    },
 
 }
