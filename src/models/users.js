@@ -1,4 +1,4 @@
-const users = [ 
+const users = [
     { id: '1', name: 'Vitor', email: 'vitor@email.com', password: '123456', role: 'admin' }
 ]
 
@@ -9,5 +9,23 @@ module.exports = {
 
     findByEmail: (email) => users.find(user => user.email === email),
 
-    
+    registerUser: (name, email, password) => {
+        const userAlreadyRegistered = users.find(user => user.email === email)
+
+        if (userAlreadyRegistered) {
+            return { error: 'User already registered' }
+        }
+
+        const newUser = {
+            id: Math.floor(Math.random() * 9999999).toString(),
+            name,
+            email,
+            password,
+            role: 'standard'
+        }
+
+        users.push(newUser)
+        return newUser
+    }, 
+
 }
