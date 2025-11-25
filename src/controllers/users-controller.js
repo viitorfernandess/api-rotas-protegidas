@@ -1,15 +1,20 @@
 const users = require("../models/users")
 
 module.exports = {
-// GET /users
-index: (req, res)=> {
-    const allUsers = users.findAll()
-    res.json(allUsers)
-}
+    // GET /users
+    index: (req, res) => {
+        const allUsers = users.findAll()
+        res.json(allUsers)
+    },
 
-// GET /users/:id
+    // GET /users/:id
+    show: (req, res) => {
+        const { id } = req.params
+        const user = users.findById(id)
+        if (!user) return res.status(404).json({ message: 'User not found}' })
+        res.json(user)
+    }
+    // POST /users
 
-// POST /users
-
-// DELETE /users/:id
+    // DELETE /users/:id
 }

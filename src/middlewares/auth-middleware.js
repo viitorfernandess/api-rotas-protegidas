@@ -47,7 +47,7 @@ module.exports = {
     },
 
     ensureAdmin: (req, res, next) => {
-        if (req.authenticatedUser === 'admin') {
+        if (req.authenticatedUser?.role === 'admin') {
             next()
         } else {
             res.status(403).json({ message: 'Permission denied!' })
